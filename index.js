@@ -87,9 +87,26 @@ function processLastItem(stringList,callback){
  * [2] Invoking `processSum` passing `[]` and `(num) => num + 1000`,
  * should return 1000.
 */
+//create a variable in processSum for an array of numbers calles "numberList"
 function processSum(numberList,callback){
-  return callback(numberList.);
+//get the sum of all elements in numberlist
+  let sum = (accumulator, value) => {
+    return accumulator + value;} 
+//create a callback function that accepts a number as an argument
+//pass the sum into callback
+  if (numberList.length > 0){
+  return callback(numberList.reduce(sum));
+  }
+  else{
+    return callback(0);
+  }  
 }
+//return the callback with the sum.
+
+
+//function processSum(){
+//}
+
 
 /**
  * ### Challenge `processProduct`
@@ -109,8 +126,9 @@ function processSum(numberList,callback){
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+function processProduct(factorA,factorB,callback) {
+  let product = (factorA, factorB) => factorA * factorB ;
+  return callback(product(factorA, factorB));
 }
 
 /**
@@ -133,9 +151,9 @@ function processProduct(/* CODE HERE */) {
  * "lady gaga" and `['foo', 'bar']` and `(bool) => bool ? 'nice!' : 'sad'`,
  * should return "sad".
 */
-function processContains(/* CODE HERE */) {
-  /* CODE HERE */
-}
+function processContains(item,list,callback) {
+    return callback(list.includes(item));
+  }
 
 /**
  * ### Challenge `processDuplicateFree`
@@ -178,9 +196,14 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
-}
+function getFullNames(runners){
+    let runner = [];
+   runners.forEach(function(item,index,array){
+      const fullName = `${runners[index].last_name}, ${runners[index].first_name}`;
+      return runner.push(fullName);   
+     });
+   return runner;
+ }
 
 /**
  * ### Challenge `firstNamesAllCaps`
