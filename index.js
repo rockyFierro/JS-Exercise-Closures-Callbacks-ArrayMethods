@@ -215,7 +215,9 @@ function getFullNames(runners){
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps() {
+function firstNamesAllCaps(runners) {
+  const namesUpperCase = runners.map(runner => runner.first_name.toUpperCase());
+  return namesUpperCase;
 }
 
 /**
@@ -231,9 +233,10 @@ function firstNamesAllCaps() {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
-}
+function getRunnersByTShirtSize(runners,tShirtSize){
+    const runnerShirts = runners.filter(runner => runner.shirt_size === tShirtSize);
+    return runnerShirts;
+  }
 
 /**
  * ### Challenge `tallyUpDonations`
@@ -245,8 +248,8 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners){
+  return runners.reduce((acc,current)=>acc+current.donation,0);
 }
 
 /////////////// CLOSURES ///////////////
