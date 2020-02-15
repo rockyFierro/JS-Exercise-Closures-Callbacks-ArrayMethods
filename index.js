@@ -215,19 +215,7 @@ function getFullNames(runners){
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(runners) {
-  let runnerCaps = []
-  runners.forEach(function(runner,index){
-    //GET INDEX OF RUNNER
-    //GET FIRST NAME FROM RUNNER
-    //GET LAST NAME FROM RUNNER
-    //GET FIRST NAME FROM RUNNER AS UPPERCASE
-    //GET LAST NAME FROM RUNNER AS UPPERCASE
-    //RETURN UPPERCASE FIRST NAME OF RUNNER TO SAME INDEX
-    //RETURN UPPERCASE LAST NAME OF RUNNER TO SAME INDEX
-    //PUSH TO SAME INDEX IN RUNNERCAPS
-  });
-  //RETURN RUNNER CAPS 98y54  1
+function firstNamesAllCaps() {
 }
 
 /**
