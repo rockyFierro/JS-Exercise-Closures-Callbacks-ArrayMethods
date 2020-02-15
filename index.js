@@ -95,18 +95,16 @@ function processSum(numberList,callback){
 //create a callback function that accepts a number as an argument
 //pass the sum into callback
   if (numberList.length > 0){
+    //callback works for arrays that have content
   return callback(numberList.reduce(sum));
   }
   else{
+    //need a fallback argument for empty arrays
     return callback(0);
+    //TODO:possible shorter code to add a default  argument.
   }  
 }
 //return the callback with the sum.
-
-
-//function processSum(){
-//}
-
 
 /**
  * ### Challenge `processProduct`
@@ -128,7 +126,7 @@ function processSum(numberList,callback){
 */
 function processProduct(factorA,factorB,callback) {
   let product = (factorA, factorB) => factorA * factorB ;
-  return callback(product(factorA, factorB));
+  return callback(product(factorA,factorB));
 }
 
 /**
@@ -217,8 +215,19 @@ function getFullNames(runners){
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+function firstNamesAllCaps(runners) {
+  let runnerCaps = []
+  runners.forEach(function(runner,index){
+    //GET INDEX OF RUNNER
+    //GET FIRST NAME FROM RUNNER
+    //GET LAST NAME FROM RUNNER
+    //GET FIRST NAME FROM RUNNER AS UPPERCASE
+    //GET LAST NAME FROM RUNNER AS UPPERCASE
+    //RETURN UPPERCASE FIRST NAME OF RUNNER TO SAME INDEX
+    //RETURN UPPERCASE LAST NAME OF RUNNER TO SAME INDEX
+    //PUSH TO SAME INDEX IN RUNNERCAPS
+  });
+  //RETURN RUNNER CAPS 98y54  1
 }
 
 /**
