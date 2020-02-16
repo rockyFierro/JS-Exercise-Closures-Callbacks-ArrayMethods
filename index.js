@@ -172,9 +172,30 @@ function processContains(item, list, callback) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
  */
-function processDuplicateFree( /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */ ) {
-    /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
-}
+function processDuplicateFree(list, callback) {
+    // return callback(list.splice(0, list.length, ...(new Set(list))))
+    callback = function() {
+        list = list.sort();
+        const temp = [];
+        for (i = 0; i < list.length - 1; i++) {
+            if (list[i] != list[i + 1]) {
+                temp[j] = list[i];
+                j++;
+            }
+            temp[j] = list[list.length - 1]
+        }
+        const cleanList = temp.filter(function(num) {
+            return num != null;
+        })
+        list.splice(0, list.length);
+        cleanList.forEach(element => {
+            list.push[element];
+        });
+        return list;
+    }
+    return callback;
+};
+
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -298,7 +319,21 @@ function counterMaker() {
  * counter() // should return 0
  * etc
  */
-function counterMakerWithLimit(maxCount) {}
+function counterMakerWithLimit(maxCount) {
+    let count = 0;
+    return function() {
+        if (count > maxCount) { count = 0; }
+        return count++
+    };
+    // if (count === maxCount) {
+    //     count = 0;
+    // } else {
+    //     count++;
+    // }
+    // return count;
+} //https://codepen.io/rockyfierro/post/learning-about-closures
+
+
 
 
 
