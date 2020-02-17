@@ -170,31 +170,34 @@ function processContains(item, list, callback) {
  * should return `[1,2]`.
  * 
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
- * should return 3.
+ * should return 
  */
+
+
+
 function processDuplicateFree(list, callback) {
-    // return callback(list.splice(0, list.length, ...(new Set(list))))
+    list.sort();
+    let temp = [];
+    let j = 0;
     callback = function() {
-        list = list.sort();
-        const temp = [];
-        for (i = 0; i < list.length - 1; i++) {
+        for (let i = 0; i < list.length - 1; i++) {
             if (list[i] != list[i + 1]) {
                 temp[j] = list[i];
                 j++;
             }
-            temp[j] = list[list.length - 1]
-        }
-        const cleanList = temp.filter(function(num) {
-            return num != null;
-        })
+            temp[j] = list[list.length - 1];
+        };
         list.splice(0, list.length);
-        cleanList.forEach(element => {
-            list.push[element];
-        });
+        for (let i = 0; i < temp.length; i++) {
+            list.push(temp[i]);
+        }
         return list;
     }
-    return callback;
-};
+
+
+    callback(list, j);
+    return list;
+}
 
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
