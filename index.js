@@ -13,9 +13,9 @@
  * Example of usage of this higher-order function:
  * Invoking `processFirstItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'foofoo'.
-*/
+ */
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+    return callback(stringList[0])
 }
 
 // ⭐️ Example Challenge END ⭐️
@@ -47,9 +47,9 @@ function processFirstItem(stringList, callback) {
  * 
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
-*/
-function processLength(/* CODE HERE */) {
-  /* CODE HERE */
+ */
+function processLength(list, callback) {
+    return callback(list.length);
 }
 
 /**
@@ -65,9 +65,9 @@ function processLength(/* CODE HERE */) {
  * Example of usage of this higher-order function:
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
-*/
-function processLastItem(/* CODE HERE */) {
-  /* CODE HERE */
+ */
+function processLastItem(stringList, callback) {
+    return callback(stringList[stringList.length - 1]);
 }
 
 /**
@@ -86,10 +86,25 @@ function processLastItem(/* CODE HERE */) {
  * 
  * [2] Invoking `processSum` passing `[]` and `(num) => num + 1000`,
  * should return 1000.
-*/
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+ */
+//create a variable in processSum for an array of numbers calles "numberList"
+function processSum(numberList, callback) {
+    //get the sum of all elements in numberlist
+    let sum = (accumulator, value) => {
+            return accumulator + value;
+        }
+        //create a callback function that accepts a number as an argument
+        //pass the sum into callback
+    if (numberList.length > 0) {
+        //callback works for arrays that have content
+        return callback(numberList.reduce(sum));
+    } else {
+        //need a fallback argument for empty arrays
+        return callback(0);
+        //TODO:possible shorter code to add a default  argument.
+    }
 }
+//return the callback with the sum.
 
 /**
  * ### Challenge `processProduct`
@@ -108,9 +123,10 @@ function processSum(/* CODE HERE */) {
  * 
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
-*/
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+ */
+function processProduct(factorA, factorB, callback) {
+    let product = (factorA, factorB) => factorA * factorB;
+    return callback(product(factorA, factorB));
 }
 
 /**
@@ -132,9 +148,9 @@ function processProduct(/* CODE HERE */) {
  * [2] Invoking `processContains` passing
  * "lady gaga" and `['foo', 'bar']` and `(bool) => bool ? 'nice!' : 'sad'`,
  * should return "sad".
-*/
-function processContains(/* CODE HERE */) {
-  /* CODE HERE */
+ */
+function processContains(item, list, callback) {
+    return callback(list.includes(item));
 }
 
 /**
@@ -154,11 +170,35 @@ function processContains(/* CODE HERE */) {
  * should return `[1,2]`.
  * 
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
- * should return 3.
-*/
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+ * should return 
+ */
+
+
+
+function processDuplicateFree(list, callback) {
+    list.sort();
+    let temp = [];
+    let j = 0;
+    callback = function() {
+        for (let i = 0; i < list.length - 1; i++) {
+            if (list[i] != list[i + 1]) {
+                temp[j] = list[i];
+                j++;
+            }
+            temp[j] = list[list.length - 1];
+        };
+        list.splice(0, list.length);
+        for (let i = 0; i < temp.length; i++) {
+            list.push(temp[i]);
+        }
+        return list;
+    }
+
+
+    callback(list, j);
+    return list;
 }
+
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -177,9 +217,14 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
-*/
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+ */
+function getFullNames(runners) {
+    let runner = [];
+    runners.forEach(function(item, index, array) {
+        const fullName = `${runners[index].last_name}, ${runners[index].first_name}`;
+        return runner.push(fullName);
+    });
+    return runner;
 }
 
 /**
@@ -193,9 +238,10 @@ function getFullNames(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
-*/
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+ */
+function firstNamesAllCaps(runners) {
+    const namesUpperCase = runners.map(runner => runner.first_name.toUpperCase());
+    return namesUpperCase;
 }
 
 /**
@@ -210,9 +256,10 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @param tShirtSize string (possible values are "S", "M", "L", "XL", "2XL", "3XL").
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
-*/
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+ */
+function getRunnersByTShirtSize(runners, tShirtSize) {
+    const runnerShirts = runners.filter(runner => runner.shirt_size === tShirtSize);
+    return runnerShirts;
 }
 
 /**
@@ -224,9 +271,9 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * 
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
-*/
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+ */
+function tallyUpDonations(runners) {
+    return runners.reduce((acc, current) => acc + current.donation, 0);
 }
 
 /////////////// CLOSURES ///////////////
@@ -244,14 +291,15 @@ function tallyUpDonations(/* CODE HERE */) {
  * counter() // should return 1
  * counter() // should return 2
  * etc
-*/
+ */
 function counterMaker() {
-  // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
-  }
-  // BROKEN CODE ENDS
+    // BROKEN CODE STARTS
+    let count = 0;
+    const counter = function() {
+        return count++;
+    }
+    return counter;
+    // BROKEN CODE ENDS
 }
 
 /**
@@ -273,30 +321,46 @@ function counterMaker() {
  * counter() // should return 3
  * counter() // should return 0
  * etc
-*/
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
-}
+ */
+function counterMakerWithLimit(maxCount) {
+    let count = 0;
+    return function() {
+        if (count > maxCount) { count = 0; }
+        return count++
+    };
+    // if (count === maxCount) {
+    //     count = 0;
+    // } else {
+    //     count++;
+    // }
+    // return count;
+} //https://codepen.io/rockyfierro/post/learning-about-closures
+
+
+
+
+
+
 
 /////////////// END OF CHALLENGE ///////////////
 /////////////// END OF CHALLENGE ///////////////
 /////////////// END OF CHALLENGE ///////////////
 
 if (typeof exports !== 'undefined') {
-  // IGNORE: Test/Env Detected
-  // For Node/Non-browser test env
-  module.exports = module.exports || {}
-  if (processFirstItem) { module.exports.processFirstItem = processFirstItem }
-  if (processLength) { module.exports.processLength = processLength }
-  if (processLastItem) { module.exports.processLastItem = processLastItem }
-  if (processSum) { module.exports.processSum = processSum }
-  if (processProduct) { module.exports.processProduct = processProduct }
-  if (processContains) { module.exports.processContains = processContains }
-  if (processDuplicateFree) { module.exports.processDuplicateFree = processDuplicateFree }
-  if (getFullNames) { module.exports.getFullNames = getFullNames }
-  if (firstNamesAllCaps) { module.exports.firstNamesAllCaps = firstNamesAllCaps }
-  if (getRunnersByTShirtSize) { module.exports.getRunnersByTShirtSize = getRunnersByTShirtSize }
-  if (tallyUpDonations) { module.exports.tallyUpDonations = tallyUpDonations }
-  if (counterMaker) { module.exports.counterMaker = counterMaker }
-  if (counterMakerWithLimit) { module.exports.counterMakerWithLimit = counterMakerWithLimit }
+    // IGNORE: Test/Env Detected
+    // For Node/Non-browser test env
+    module.exports = module.exports || {}
+    if (processFirstItem) { module.exports.processFirstItem = processFirstItem }
+    if (processLength) { module.exports.processLength = processLength }
+    if (processLastItem) { module.exports.processLastItem = processLastItem }
+    if (processSum) { module.exports.processSum = processSum }
+    if (processProduct) { module.exports.processProduct = processProduct }
+    if (processContains) { module.exports.processContains = processContains }
+    if (processDuplicateFree) { module.exports.processDuplicateFree = processDuplicateFree }
+    if (getFullNames) { module.exports.getFullNames = getFullNames }
+    if (firstNamesAllCaps) { module.exports.firstNamesAllCaps = firstNamesAllCaps }
+    if (getRunnersByTShirtSize) { module.exports.getRunnersByTShirtSize = getRunnersByTShirtSize }
+    if (tallyUpDonations) { module.exports.tallyUpDonations = tallyUpDonations }
+    if (counterMaker) { module.exports.counterMaker = counterMaker }
+    if (counterMakerWithLimit) { module.exports.counterMakerWithLimit = counterMakerWithLimit }
 }
